@@ -38,7 +38,7 @@ alert('refresh!!');
              //get Gcal end date
              var cal_enddate=getGCalEndtDate(startdatetm);
              //generate HTML text to inject
-             var cal_htmltxt='<subheading><a style="pointer-events:auto;" target="_blank" href="https://calendar.google.com/calendar/render?action=TEMPLATE&dates=' + cal_startdate + '%2F' + cal_enddate + 'Z&location=pc&text=Destiny Event!" title="D2 Event" >Save event to Google Calendar</a></subheading>';
+             var cal_htmltxt='<subheading><a style="pointer-events:auto;" target="_blank" href="https://calendar.google.com/calendar/render?action=TEMPLATE&dates=' + cal_startdate + '%2F' + cal_enddate + 'Z&location=PC&text=Destiny Event!" title="D2 Event" >Save event to Google Calendar</a></subheading>';
              $(this).children('textgroup').append(cal_htmltxt);
         });
     });
