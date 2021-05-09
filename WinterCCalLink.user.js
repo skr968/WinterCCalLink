@@ -44,7 +44,7 @@
 
 
             });
-        }, 3000);
+        }, 4000);
 
 
     function createLink()
@@ -55,7 +55,7 @@
         var longdate='';
         //get event date from page header
         var retdate=geteventdate(this);
-       // alert('in createlink');
+        //alert('in createlink');
         //iterate for each event block
 
         if ( $( "#callink" ).length==0) {
@@ -67,10 +67,16 @@
                 var cal_startdate=getGCalStartDate(startdatetm);
                 //get Gcal end date
                 var cal_enddate=getGCalEndtDate(startdatetm);
+
+                //get cal event details
+                var cal_title=geteventtitle(this);
+                var cal_location=geteventloc(this);
+                var cal_body=geteventbody(this);
+
                 //generate HTML text to inject
-                var cal_htmltxt='<subheading class"callink"><a style="pointer-events:auto;" target="_blank" href="https://calendar.google.com/calendar/render?action=TEMPLATE&dates=' + cal_startdate + '%2F' + cal_enddate + 'Z&location=PC&text=Destiny Event!&details=Destiny Event" title="D2 Event" >Save event to Google Calendar</a></subheading>';
+                var cal_htmltxt='<subheading class"callink"><a style="pointer-events:auto;" target="_blank" href="https://calendar.google.com/calendar/render?action=TEMPLATE&dates=' + cal_startdate + '%2F' + cal_enddate + 'Z&location=' + cal_location +'&text=' + cal_title + '&details=' + cal_body + '" title="D2 Event" >Save event to Google Calendar</a></subheading>';
                 $(this).children('textgroup').append(cal_htmltxt);
-                var ics_htmltxt='<subheading><a style="pointer-events:auto;" title="Download .ics (Apple iCal) file"  href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20210508T071500Z%0ADTEND:20210508T094500Z%0ASUMMARY:destiny%20event%0ALOCATION:PC%0AEND:VEVENT%0AEND:VCALENDAR%0A">Download ICS file </a></subheading>';
+                var ics_htmltxt='<subheading><a style="pointer-events:auto;" title="Download .ics (Apple iCal) file"  href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:' + cal_startdate + 'Z%0ADTEND:' + cal_enddate +'Z%0ASUMMARY:' + cal_title + '%0ALOCATION:' + cal_location +'%0AEND:VEVENT%0AEND:VCALENDAR%0A">Download ICS file </a></subheading>';
                 $(this).children('textgroup').append(ics_htmltxt);
             });
         }
@@ -134,6 +140,28 @@
         return ret;
     }
 
+    function geteventtitle(evt)
+    {
+        //extract event title
+        var tm_raw=$(evt).find('textgroup > heading > t').html();
+        tm_raw=tm_raw + ' - ' + $(evt).find('textgroup > heading > type').html();
+        return tm_raw;
+    }
+
+    function geteventloc(evt)
+    {
+        //extract event title
+        var tm_raw=$(evt).find('textgroup > subheading').eq(1).html();
+        return tm_raw;
+    }
+
+    function geteventbody(evt)
+    {
+        //extract event title
+        var tm_raw=$(evt).find('textgroup > subheading').eq(3).html();
+        return tm_raw;
+    }
+
     function leftpad (str, max) {
         str = str.toString();
         return str.length < max ? leftpad("0" + str, max) : str;
@@ -145,6 +173,5 @@
         ret.setHours(ret.getHours() + hrs);
         return ret;
     }
-
 
 })();
