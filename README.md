@@ -15,3 +15,6 @@ The Winter Clan website (https://winterclan.net) lists upcoming events. This scr
 * The event duration has been hard coded to 1 hour
 * The code gets trigerred only if you directly open https://winterclan.net/#/events and navigate to an event day within 4 seconds.
 * Navigating to next/prev event day will populate the links after around 1 second
+
+## Issues?
+Please submit any found issues at https://github.com/skr968/WinterCCalLink/issues
