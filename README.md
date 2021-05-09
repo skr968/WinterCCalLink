@@ -4,6 +4,8 @@ Installation
 * In browser, open https://github.com/skr968/WinterCCalLink/raw/main/WinterCCalLink.user.js
 *  Tampermonkey installation page should open. Click on "Install"
 
+![Add event to calendar example](cal links.JPG)
+
 
 Known Issues
 * The event duration has been hard coded to 1 hour
